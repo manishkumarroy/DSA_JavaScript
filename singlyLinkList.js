@@ -52,16 +52,29 @@ class SinglyLinkedList{
 
   }
 
+// Removing node from the beginning of the list
 shift(){
-  if(this.length===0) return undefined;
+if(this.length===0) return undefined;
 
-  var currentHead = this.head;
-  this.head = currentHead.next;
-  this.length--;
-  if(this.length === 0)
-    this.tail = null;
-  
-    return currentHead;
+var currentHead = this.head;
+this.head = currentHead.next;
+this.length--;
+if(this.length === 0)
+  this.tail = null;
+return currentHead;
+}
+
+//Adding the new node from the beginning of the list
+unshift(val){
+var newNode = new Node(val);
+if(!this.head){
+  this.head = newNode;
+  this.tail = newNode;
+}
+newNode.next = this.head;
+this.head = newNode;
+this.length++;
+return this;
 }
 }
 
