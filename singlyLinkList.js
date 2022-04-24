@@ -122,6 +122,54 @@ Insert(idx,val){
  this.length++;
  return true;
 }
+
+ remove(idx){
+  if(idx < 0 || idx > this.length) return false;
+  if(idx === 0){
+   this.shift();
+   return true;
+  }
+if(idx === this.length){
+ this.pop();
+ return true;
+}
+  var prevNode = this.get(idx-1);
+  var current = prevNode;
+  var count = 0;
+  while(count !== idx+1){
+   current = current.next;
+   count++;
+  }
+  prevNode.next = current;
+  this.length--;
+  return true;
+}
+
+ print(){
+  var arr = [];
+  var current = this.head;
+  while(current){
+   arr.push(current.val);
+   current = current.next;
+  }
+  console.log(arr);
+ }
+
+ reverse(){
+  var node = this.head;
+  this.head = this.tail;
+  this.tail = node;
+  var next;
+  var prev = null;
+  for(var i = 0; i < this.length; i++){
+   next = node.next;
+   node.next = prev;
+   prev = node;
+   node = next;
+  }
+  return this;
+ }
+
 }
 
 var list = new SinglyLinkedList();
