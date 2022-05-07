@@ -1,12 +1,11 @@
-class Node {
+class Node{
     constructor(value){
         this.value = value;
-        this.left = null;
         this.right = null;
+        this.left = null;
     }
 }
-
-class BinarySearchTree {
+class Tree{
     constructor(){
         this.root = null;
     }
@@ -34,42 +33,36 @@ class BinarySearchTree {
             }
         }
     }
+    
+    BFS(){
+        var node = this.root;
+        var queue = [];
+        var data = [];
+        queue.push(node);
 
-    find(value){
-        if(!this.root) return false;
-        var current = this.root;
-        
-        while(current){
-            if(value < current.value){
-                if(!current.left){
-                    return false;
-                }
-                else{
-                    current = current.left;
-                }
+        while(queue.length){
+            node = queue.shift();
+            data.push(node.value);
+            if(node.left){
+                queue.push(node.left)
             }
-            else if(value > current.value){
-                if(!current.right){
-                    return false;
-                }
-                else{
-                    current = current.right;
-                }
-                
-            }
-            else{
-                return true;
+            if(node.right){
+                queue.push(node.right)
             }
         }
+        return data;
     }
-
 }
 
-var tree = new BinarySearchTree();
-tree.insert(10)
-tree.insert(6)
-tree.insert(15)
-tree.insert(3)
-tree.insert(8)
-tree.insert(20)
-console.log(tree);
+var TreeTraversal = new Tree();
+TreeTraversal.insert(10)
+TreeTraversal.insert(6)
+TreeTraversal.insert(15)
+TreeTraversal.insert(3)
+TreeTraversal.insert(8)
+TreeTraversal.insert(20)
+
+console.log(TreeTraversal);
+console.log(TreeTraversal.BFS());
+
+
