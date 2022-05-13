@@ -52,6 +52,44 @@ class Tree{
         }
         return data;
     }
+
+//Depth first search
+DFSPreOrder(){
+    var data = [];
+    var current = this.root;
+    function traverse(node){
+        data.push(node.value);
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current);
+    return data;
+}
+
+DFSPostOrder(){
+    var data = [];
+    var current = this.root;
+    function traverse(node){
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+        data.push(node.value);
+    }
+    traverse(current);
+    return data;
+}
+
+DFSInOrder(){
+    var data = [];
+    var current = this.root;
+    function traverse(node){
+        if(node.left) traverse(node.left);
+        data.push(node.value);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current);
+    return data;
+}
+
 }
 
 var TreeTraversal = new Tree();
@@ -63,6 +101,9 @@ TreeTraversal.insert(8)
 TreeTraversal.insert(20)
 
 console.log(TreeTraversal);
-console.log(TreeTraversal.BFS());
+console.log("BFS",TreeTraversal.BFS());
+console.log("DFSPREORDER",TreeTraversal.DFSPreOrder());
+console.log("DFSPOSTORDER",TreeTraversal.DFSPostOrder());
+console.log("DFSINORDER",TreeTraversal.DFSInOrder());
 
 
